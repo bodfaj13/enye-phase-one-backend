@@ -19,13 +19,17 @@ npm start
 ```
 
 ## Application link
-[https://enyeone-6cb52.web.app/](https://enyeone-6cb52.web.app/)
+[https://enye-phase-one-backend.herokuapp.com/](https://enye-phase-one-backend.herokuapp.com/)
+
+## Endpoint example
+```bash
+https://enye-phase-one-backend.herokuapp.com/api/rates?base=CZK&currency=EUR,GBP,USD
+```
 
 ## API Doc
-[https://enyeone-6cb52.web.app/](https://enyeone-6cb52.web.app/)
+[https://enye-phase-one-backend.herokuapp.com/api-docs/](https://enye-phase-one-backend.herokuapp.com/api-docs/)
 
 
 ## Project Link
 [https://enyeone-6cb52.web.app/](https://enyeone-6cb52.web.app/)
 
-# enye-phase-one-backend

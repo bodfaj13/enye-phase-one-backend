@@ -44,30 +44,35 @@ const appdetails = require('../config/index')
  *            message:
  *              type: string  
  */
-router.get('/rates', function(req, res, next) {
+router.get('/rates', function (req, res, next) {
   const { base, currency } = req.query
-  let currencyArray = currency.split(',')
-  axios.get(`${appdetails.baseurl}/latest/?base=${base}`)
-  .then((response) => {
-    let rates = {}
-    for (let index = 0; index < currencyArray.length; index++) {
-      const element = currencyArray[index];
-      rates[element] = response.data.rates[element]
-    }
-    res.status(200).send({
-      results: {
-        base: response.data.base,
-        date: response.data.date,
-        rates
-      }
-    })
-  })
-  .catch((err) => {
-    console.log(err)
+  if (base.length === 0 || currency.length === 0) {
     res.status(400).send({
-      message: 'Something went wrong'
+      message: 'Incomplete queries, make sure you have the base and the currency'
     })
-  })
+  } else {
+    let currencyArray = currency.split(',')
+    axios.get(`${appdetails.baseurl}/latest/?base=${base}`)
+      .then((response) => {
+        let rates = {}
+        for (let index = 0; index < currencyArray.length; index++) {
+          const element = currencyArray[index];
+          rates[element] = response.data.rates[element]
+        }
+        res.status(200).send({
+          results: {
+            base: response.data.base,
+            date: response.data.date,
+            rates
+          }
+        })
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: err.response !== undefined ? err.response.data.error : "Something went wrong!"
+        })
+      })
+  }
 });
 
 
