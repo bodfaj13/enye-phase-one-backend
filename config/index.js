@@ -1,0 +1,1 @@
+exports.baseurl = ' https://api.exchangeratesapi.io'
